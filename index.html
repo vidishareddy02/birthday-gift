@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #f5e6e8, #f7d9e3);
+  color: #2c2c2c;
+  text-align: center;
+}
+
+.section { display: none; }
+.active { display: block; }
+
+h1 { font-family: 'Playfair Display', serif; }
+
+button {
+  padding: 12px 25px;
+  border: none;
+  background: #d8a7b1;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  width: 220px;
+  cursor: pointer;
+}
+
+.letter-btn {
+  display: block;
+  width: 320px;
+  margin: 12px auto;
+  font-size: 18px;
+  padding: 14px;
+}
+
+.timeline img {
+  height: 250px;
+  width: auto;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+.menu-photos {
+  display: flex;
+  justify-content: space-between;  /* 🔥 spreads left-center-right */
+  align-items: center;
+  margin: 40px auto;
+  max-width: 900px;               /* keeps layout centered */
+}
+
+
+.menu-photos::-webkit-scrollbar,
+.timeline::-webkit-scrollbar {
+  display: none;
+}
+
+.menu-photos img {
+  width: 450px;        /* 🔥 bigger */
+  height: 450px;
+  object-fit: contain; /* no cropping */
+  border-radius: 20px;
+  background: #f7d9e3;
+}
+.menu-photos img:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+#interactiveImg {
+  width: 300px;
+  margin-top: 20px;
+}
+
+.letters-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.letters-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.letters-list button {
+  width: 320px;          /* 🔥 wider */
+  padding: 16px;         /* 🔥 more height */
+  font-size: 16px;       /* 🔥 bigger text */
+  background: #d8a7b1;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.letters-list button:hover {
+  transform: scale(1.03);
+}
+
+.letter-display {
+  width: 400px;
+  min-height: 300px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: left;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 40px auto;
+  padding-left: 80px;   /* 🔥 space for line */
+}
+
+/* vertical line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 30px;          /* 🔥 keep line on left */
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #d8a7b1;
+}
+
+/* each item */
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* 🔥 THIS CENTERS EVERYTHING */
+}
+
+/* dot */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -52px;        /* 🔥 aligns with line */
+  top: 20px;          /* 🔥 aligns with image top */
+  width: 14px;
+  height: 14px;
+  background: #d8a7b1;
+  border-radius: 50%;
+}
+
+/* image */
+.timeline-item img {
+  height: 300px;
+  width: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+/* caption */
+.timeline-item p {
+  margin-top: 10px;
+  text-align: center;   /* 🔥 center text */
+  max-width: 500px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="landingMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="mainMusic" loop>
+  <source src="main.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🌸 LANDING -->
+<div id="landing" class="section active">
+
+  <div style="padding:80px 20px; display:flex; justify-content:center;">
+    <div style="max-width:600px; text-align:center;">
+
+        <p 
+  onclick="playBirthdayMusic()" 
+  onmouseover="this.style.opacity=1"
+  onmouseout="this.style.opacity=0.8"
+  style="
+    margin:0; 
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.3s;
+  "
+>
+  click this or you'll break my heart 💔🙈
+</p>
+
+      <h1 style="font-size:80px; white-space:nowrap; margin-top: 2px;">
+        Happy Birthday<span style="color:#e63946;">♥</span>
+      </h1>
+
+      <p style="font-size:20px; line-height:1.6;">
+        I know you don’t like big things…<br><br>
+        but I still wanted to do something for you.<br><br>
+        Something small… but something from my heart.<br>
+        Something I really hope you’ll like.<br><br>
+        I just want you to know that you mean a lot to me,<br>
+        and I love you so much sasa<span style="color:#d63384;">♥</span>
+      </p>
+
+      <p style="font-size:12px; opacity:0.7;">I hope you like it.</p>
+
+      <button onclick="goTo('menu')">Enter</button>
+
+    </div>
+  </div>
+
+  <!-- Bottom images -->
+  <div style="display:flex; width:100%; height:320px;">
+    <img src="images/p1.JPG" style="width:25%; object-fit:cover; object-position: top;">
+    <img src="images/p2.JPG" style="width:25%; object-fit:cover;">
+    <img src="images/p3.JPG" style="width:25%; object-fit:cover;">
+    <img src="images/p4.JPG" style="width:25%; object-fit:cover;">
+  </div>
+
+</div>
+
+<!-- 🧭 MENU -->
+<div id="menu" class="section">
+  <button class="back-btn" onclick="goTo('landing')">← Back</button>
+
+  <h1>Where do you want to go?</h1>
+
+  <div class="menu-photos">
+    <img src="images/p5.JPG">
+    <img src="images/p6.jpg">
+    <img src="images/p7.jpg">
+  </div>
+
+  <div class="card-container">
+    <div class="card" onclick="goTo('letters')">💌 Letters</div>
+    <div class="card" onclick="goTo('timeline')">📸 Our Story</div>
+    <div class="card" onclick="goTo('interactive')">✨ Something Small</div>
+  </div>
+</div>
+
+<!-- 💌 LETTERS -->
+<div id="letters" class="section">
+
+  <button class="back-btn" onclick="goTo('menu')">← Back</button>
+
+  <h1>Letters for you 💌</h1>
+
+  <div class="letters-container">
+
+    <!-- LEFT SIDE: BUTTONS -->
+    <div class="letters-list">
+      <button onclick="showLetter(0)">When you're sad</button>
+      <button onclick="showLetter(1)">When you randomly think of me</button>
+      <button onclick="showLetter(2)">When you feel lonely</button>
+      <button onclick="showLetter(3)">On your birthday</button>
+      <button onclick="showLetter(4)">When you're proud of yourself</button>
+      <button onclick="showLetter(5)">When you can't sleep</button>
+      <button onclick="showLetter(6)">When you need motivation</button>
+      <button onclick="showLetter(7)">When you miss home</button>
+      <button onclick="showLetter(8)">When everything feels overwhelming</button>
+      <button onclick="showLetter(9)">When you're overthinking</button>
+      <button onclick="showLetter(10)">When you feel lost</button>
+      <button onclick="showLetter(11)">When you need a hug</button>
+      <button onclick="showLetter(12)">When you're having a bad day</button>
+      <button onclick="showLetter(13)">When you need a smile</button>
+      <button onclick="showLetter(14)">When you're bored</button>
+      <button onclick="showLetter(15)">When you doubt yourself</button>
+    </div>
+
+    <!-- RIGHT SIDE: MESSAGE -->
+    <div class="letter-display">
+      <p id="letterText">Click any letter 💌</p>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 📸 TIMELINE -->
+<div id="timeline" class="section">
+  <button class="back-btn" onclick="goTo('menu')">← Back</button>
+
+  <h1>Our Story 📸</h1>
+  <p>6+ years… and still my bestfriend.</p>
+
+  <div class="timeline">
+
+  <div class="timeline-item">
+    <img src="images/t1.jpg">
+    <p>srsly one of the most memorable day..it was prolly our first day out together having smmm fun </p>
+  </div>
+
+  <div class="timeline-item">
+    <img src="images/t2.jpg">
+    <p>ig this was our first ever "official" hangout 🥹</p>
+  </div>
+
+  <div class="timeline-item">
+    <img src="images/t3.jpg">
+    <p>peak friendship moment where nothing made sense but everything was fun...i think we were spying on rida😭
+</p>
+  </div>
+
+  <div class="timeline-item">
+    <img src="images/t4.jpg">
+    <p>literally nothing special happened but I’d still go back to this day</p>
+  </div>
+
+  <div class="timeline-item">
+    <img src="images/t5.jpg">
+    <p>end of a chapter we didn’t want to end but at least we had each other...take me backkkkk 😭</p>
+  </div>
+
+  <div class="timeline-item">
+    <img src="images/t6.jpg">
+    <p>hard work paid off but having you there made it 10x better🥰</p>
+  </div>
+
+  <div class="timeline-item">
+    <img src="images/t7.jpg">
+    <p>same conversations, same chaos, just a different place</p>
+  </div>
+
+  <div class="timeline-item">
+    <img src="images/t8.jpg">
+    <p>housewarming day… and it meant more because you were there</p>
+  </div>
+
+  <div class="timeline-item">
+    <img src="images/t9.jpg">
+    <p>some things never change… like u being there every birthday💗</p>
+  </div>
+
+  <div class="timeline-item">
+    <img src="images/t10.jpg">
+    <p>my forever shopping partner whether we buy something or not</p>
+  </div>
+
+</div>
+</div>
+
+<!-- 🎮 INTERACTIVE -->
+<div id="interactive" class="section">
+
+  <button class="back-btn" onclick="goTo('menu')">← Back</button>
+
+  <!-- CENTER WRAPPER -->
+  <div style="
+    height: 80vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    padding-top: 120px;
+    align-items: center;
+  ">
+
+    <h1 id="interactiveText">Don't click this.</h1>
+    <button onclick="nextStep()">Click</button>
+
+    <img id="interactiveImg" style="display:none;">
+
+  </div>
+
+</div>
+
+<script>
+function goTo(section) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(section).classList.add('active');
+
+  const landingMusic = document.getElementById("landingMusic");
+  const mainMusic = document.getElementById("mainMusic");
+
+  if(section === 'menu'){
+    landingMusic.pause();
+    mainMusic.play();
+  }
+
+  if(section === 'landing'){
+    mainMusic.pause();
+    landingMusic.play();
+  }
+}
+function playBirthdayMusic(){
+  document.getElementById("landingMusic").play();
+}
+
+/* FULL 16 LETTERS KEPT */
+const letters = [
+`Hey…
+
+If you’re reading this, I’m guessing something isn’t okay right now.
+
+I just want you to remember that whatever you’re feeling… it won’t last forever. Things will fall into place, even if it doesn’t feel like it right now. You deserve everything good, and I truly believe you’ll get there.
+
+There are so many people who care about you… and I hope you never forget that I’m one of them...always.
+
+I really wish you would share things with me more. Not because I need to know everything, but because I hate the idea of you going through things alone. I’ll always be here to listen, to sit with you, to distract you, or just to be there quietly if that’s what you need.
+
+You don’t have to handle everything by yourself.
+
+And please… don’t keep it all inside. Let it out. Talk to me.
+
+I’m always here for you. No matter what. 🤍`,
+`If you’re reading this randomly, I’m guessing I just popped into your mind for no reason 😌
+
+I don’t know what made you think of me, but I hope it made you smile even a little.
+
+I hope it reminded you of something stupid we did or something random we laughed about. Or maybe just the way we talk about everything and nothing at the same time.
+
+I just want you to know that I think about you too. Sometimes for no reason at all. Something small reminds me of you and suddenly I’m just there, smiling like an idiot.
+
+And even though we’re not always around each other, you’re still such a constant in my life. You’re still my person.
+
+So if you thought of me, just know that somewhere, I probably thought of you too.
+
+And I love you sasaaaa🤍`,
+`If you’re feeling lonely right now, I wish I could just sit next to you without saying anything.
+
+I know this feeling can be really heavy. Even when there are people around, it still feels like something is missing. And I hate that you have to feel that way.
+
+But I want you to remember something. You are not alone. Not really.
+
+You have people who care about you so much, and I’m always one of them. No matter how far we are, or how long it’s been since we talked, you still have me.
+
+You don’t have to deal with everything by yourself. You can text me, call me, or even just think of me and I’ll still be there in some way.
+
+And if nothing else, just know this. There is someone who cares about you deeply, who thinks about you, and who would always choose you.
+
+I’m always here for you sasaaaaaa 🤍`,
+`Happy birthday 🤍
+
+I know you don’t like big things or too much attention, so I’m not going to make this overwhelming.
+
+I just want to say that I’m really really grateful that you’re in my life. Out of all the people, somehow I got you, and that means a lot to me.
+
+You’ve been there for me in ways you probably don’t even realize. In small moments, random conversations, and just by being you.
+
+I hope this year is kinder to you. I hope you feel more at peace, more happy, and more like yourself. And I hope you get everything you’ve been quietly wishing for.
+
+You deserve so much more than you think you do.
+
+And no matter where we are or what we’re doing, I’m always going to be here for you.
+
+YOU ARE MY BESTESTTTTT FRIEND 🤍`,
+`If you’re reading this because you’re proud of yourself, I’m already smiling 😌
+
+I’m really really happy for you. You deserve this feeling so much.
+
+I know how much effort you put into things, even when no one notices. I’ve seen it, and I know it’s not easy for you all the time. So seeing you reach a point where you feel proud of yourself just makes me so happy.
+
+And I hope you actually take a moment and let yourself feel it properly. Don’t brush it off or think it’s something small. It’s not small. It matters.
+
+I’m proud of you too. Always have been, even in the moments when you didn’t feel like it.
+
+Keep going, but also don’t forget to pause and appreciate how far you’ve come.
+
+You’re doing better than you think 🤍`,
+`If you’re awake right now and can’t sleep, I wish I could just annoy u in real for a while hehe okay jokes apart, I know how your mind starts going everywhere at times like this. Thinking about everything at once, even things that don’t really need to be thought about right now.
+
+You don’t have to figure everything out tonight. It’s okay to just let things be for a while.
+
+Try to take a deep breath, slow down a little, and give yourself some rest. You deserve that.
+
+And if it still feels heavy, just think of this like I’m right there with you, talking to you until you feel a little better.
+
+You’re okay. You’re safe. And this moment will pass.
+
+Now try to sleep 🥰`,
+`Okay listen…
+
+I know you’re probably feeling lazy or stuck or just not in the mood to do anything right now.
+
+But you didn’t come this far just to stop here. You’ve handled way worse things before and still got through them, so this is nothing compared to that.
+
+I know you don’t always see it, but you’re actually really capable. Like genuinely. You just underestimate yourself a lot.
+
+You don’t have to do everything at once. Just start with something small. Even the smallest step is still something.
+
+And if you still don’t feel like doing anything, that’s okay too. Take a break, but don’t give up on yourself.
+
+I believe in you more than you do sometimes 😌
+
+Now go do your thing`,
+`I know you’re missing home right now…
+
+And yeah, it makes sense. It’s not just the place, it’s everything that comes with it. The comfort, the people, the routine, all those small things you don’t even notice until you’re away from them.
+
+Being away is not easy, no matter how normal it looks from outside. Some days just feel heavier for no reason.
+
+But this doesn’t mean something is wrong. It just means you care, and that’s a good thing.
+
+Also, just remember, this is not forever. You’ll go back home, you’ll sit there like nothing changed, and it’ll feel normal again.
+
+And till then, you’re not completely alone here either. You still have people around you… and you have me.
+
+So just get through today. You don’t have to figure everything out. Just today is enough.`,
+`Okay, breathe for a second.
+
+I know everything feels like too much right now. Like there’s too many things happening at once and your brain just doesn’t know what to deal with first.
+
+But you don’t have to handle everything all at once. Seriously. Just pick one small thing and start there.
+
+It’s okay if you feel like this. It doesn’t mean you’re failing or doing something wrong. It just means you’re human and you’re dealing with a lot.
+
+Slow down a little. Take a break if you need to. You’re allowed to pause.
+
+And don’t forget, you don’t have to do all of this alone. I’m always here, even if it’s just to listen to you rant about everything.
+
+You’ve handled tough things before. You’ll handle this too.
+
+One step at a time, okay?`,
+`Okay, I know what you’re doing right now.
+
+You’re thinking about the same thing again and again and somehow making it bigger than it actually is.
+
+Half the things you’re worrying about probably won’t even happen the way you’re imagining them. Your brain just likes to go into worst-case mode for no reason.
+
+Try to pause for a second. Not everything needs to be figured out right now.
+
+You don’t have to have all the answers immediately. It’s okay to let things be for a while and come back to them later with a calmer mind.
+
+Also, be a little kinder to yourself. You’re doing better than you think, even if it doesn’t feel like it right now.
+
+And if your thoughts are getting too much, just come talk to me. We’ll either solve it or laugh about it.
+
+But for now, just breathe and let your mind rest a bit, okay?`,
+`If you’re feeling lost right now, just pause for a second.
+
+You don’t always need to know what you’re doing or where things are going. Nobody really has it all figured out, even if it looks like they do.
+
+It’s okay to feel confused sometimes. It doesn’t mean you’re behind or doing something wrong. It just means you’re in the middle of figuring things out.
+
+You’ve already come so far without even realizing it. And you’ll figure the next part too, one step at a time.
+
+You don’t need a perfect plan right now. Just focus on what feels right for today.
+
+And if everything feels too unclear, just remember you don’t have to go through it alone. I’m always here, even if it’s just to sit and talk through your thoughts.
+
+You’ll find your way. You always do.`,
+`If you’re reading this, I’m guessing you just needed a hug.
+
+And I really wish I could give you one right now(JUST GUESSING CUZ YOU NEVER HUG ME IN REAL BITCH). Like a proper one where you don’t have to say anything and just stay there for a bit.
+
+Sometimes words don’t help much, and you just need someone to be there. I get that.
+
+So just imagine this as me sitting next to you, not asking too many questions, just being there with you.
+
+You don’t always have to explain everything or act like you’re okay. It’s fine to just feel whatever you’re feeling.
+
+And whenever you actually need me, you know you can just text or call me. I’ll be there.
+
+For now, just take this as a small virtual hug from me 🤍`,
+`Okay, so today just isn’t it.
+
+And that’s fine. Not every day has to be good or productive or perfect. Some days are just bad for no reason.
+
+If things didn’t go your way or everything felt off, don’t be too hard on yourself. It happens to everyone.
+
+You don’t have to fix everything today. Just get through it. That’s enough.
+
+Do something small that makes you feel even a little better. Watch something, eat something you like, or just lie down and do nothing for a bit.
+
+And if the day still feels annoying, just remember it’s just one day. Tomorrow will be different.
+
+And if you wanna rant about everything, you know where to find me 😌`,
+`Okay, so if you’re here, I’m guessing you need a little smile right now.
+
+First of all, just know that you look cute(not really, u look mean when u r smiling also hehe😂🥰) even when you’re not smiling… but still, smile a little 😌
+
+I wish I could say something super funny right now, but honestly, most of our laughs come from the most random and stupid things anyway.
+
+So just think about one of those moments. Something we laughed about for no reason or something embarrassing that we still bring up.
+
+And if that didn’t work, just remember this… you’ve survived every bad mood, every bad day, every weird phase so far. You’re still here.
+
+So this will pass too.
+
+Now smile a little. At least a small one. I know you can.`,
+`So you’re bored…
+
+Out of all the things you could do, you came here. That’s actually funny.
+
+I’m guessing you’ve already scrolled everything, watched random videos, and now you’re just existing with nothing to do.
+
+Honestly, same.
+
+Go do something slightly productive… or don’t. I know you probably won’t anyway 😌
+
+But okay, if you’re really that bored, go watch something, listen to music, text someone, or just annoy me. That’s always an option.
+
+Or just sit there and think about how lucky you are to have me.
+
+That should cure your boredom at least a little.`,
+`If you’re reading this, I’m guessing you’re doubting yourself again.
+
+And honestly, I wish you could see yourself the way I see you for once.
+
+You’re way more capable than you think. You just have this habit of questioning everything you do, even when you’re doing it right.
+
+Not everything has to be perfect. And you don’t have to be sure about everything all the time to still move forward.
+
+You’ve handled things before that you thought you couldn’t. This is not any different.
+
+So maybe don’t trust that negative voice in your head so much. It’s wrong more often than you think.
+
+And if you still don’t believe in yourself right now, that’s fine.
+
+I’ll believe in you for both of us.`,
+];
+
+function showLetter(i){
+  document.getElementById("letterText").innerText = letters[i];
+}
+
+let step=0;
+function nextStep(){
+  step++;
+  let text=document.getElementById("interactiveText");
+  let img=document.getElementById("interactiveImg");
+
+  if(step==1) text.innerText="Why are you still clicking?";
+  else if(step==2) text.innerText="You’re so stubborn 😭";
+  else if(step==3) text.innerText="Last chance";
+  else if(step==4) text.innerText="Okay fine";
+
+  else if(step==5){
+    text.innerText="I had to 😌";
+    img.style.display="block";
+    img.src="images/l1.jpg";
+  }
+
+  else if(step==6){
+    text.innerText="But this one… I love.";
+    img.src="images/l2.jpg";
+  }
+
+  else if(step==7){
+    text.innerText="We’ve come a long way.";
+    img.style.display="none";
+  }
+
+  else if(step==8){
+    text.innerText="You mean a lot to me.";
+  }
+}
+</script>
+
+</body>
+</html>
